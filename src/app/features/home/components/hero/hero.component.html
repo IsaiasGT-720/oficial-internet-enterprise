@@ -1,0 +1,22 @@
+<section class="hero" id="inicio" aria-labelledby="hero-title">
+  <div class="hero-background" [style.background-image]="'linear-gradient(90deg, rgba(8,27,53,.88) 0%, rgba(13,45,79,.68) 48%, rgba(13,45,79,.18) 100%), url(' + slides[activeSlide].image + ')'">
+    <!-- IMAGEN DE FONDO PRINCIPAL: cambia la URL del arreglo slides en hero.component.ts.
+         Archivos esperados en public/images/hero/internet-rural-01.jpg, -02.jpg y -03.jpg.
+         Puedes usar imágenes propias; conserva el degradado para que el texto sea legible. -->
+  </div>
+  <div class="hero-content">
+    <p class="eyebrow"><span></span> INTERNET RURAL · SOLUCIONES TECNOLÓGICAS</p>
+    <h1 id="hero-title">Conectamos tu mundo.<br><em>Donde estés.</em></h1>
+    <p class="hero-description">Internet y tecnología para hogares, fincas y negocios que quieren llegar más lejos, incluso en zonas rurales.</p>
+    <div class="hero-actions"><a class="button button-primary" href="#planes">Conoce los planes <span>↗</span></a><a class="button button-outline" href="#catalogo">Explorar servicios</a></div>
+    <div class="hero-proof"><span class="proof-icon">⌁</span><span><strong>Conectividad y tecnología</strong><small>Soluciones pensadas para tu zona</small></span></div>
+  </div>
+  <!--
+  <div class="slide-controls" aria-label="Controles de imagen de fondo">
+    <button type="button" aria-label="Imagen anterior" (click)="previousSlide()">←</button>
+    <span>0{{ activeSlide + 1 }} <i>/ 03</i></span>
+    <button type="button" aria-label="Imagen siguiente" (click)="nextSlide()">→</button>
+  </div>
+ -->
+  <div class="hero-bottom-label">FM T&amp;T ASSOCIATED GROUP <span>•</span> ANTIOQUIA, COLOMBIA</div>
+</section>

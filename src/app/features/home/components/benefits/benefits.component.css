@@ -1,0 +1,169 @@
+.section-wrap {
+  padding: 105px clamp(22px, 7vw, 105px);
+}
+
+.benefits {
+  background: #f7f9fd;
+  /*background: #fff url('/images/coverage-bg.png');*/
+  background-size: cover;
+}
+
+.section-heading {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 44px;
+}
+
+.eyebrow-dark {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  font-weight: 850;
+  color: #3471e4;
+  margin: 0 0 15px;
+}
+
+.section-heading h2 {
+  font-size: clamp(2rem, 3.5vw, 3.25rem);
+  line-height: 1.13;
+  letter-spacing: -0.04em;
+  color: #102746;
+  margin: 0 0 18px;
+}
+
+.section-heading h2 span {
+  color: #3471e4;
+}
+
+.section-heading > p:last-child {
+  max-width: 620px;
+  margin: 0 auto;
+  color: #66768a;
+  line-height: 1.75;
+}
+
+.benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.benefit-card {
+  background: #fff;
+  border: 1px solid #e9eef6;
+  border-radius: 9px;
+  padding: 30px 28px 27px;
+  box-shadow: 0 14px 36px #17385c0b;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.benefit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 42px #17385c15;
+}
+
+.benefit-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 9px;
+  background: #edf4ff;
+  color: #3471e4;
+  font-size: 1.8rem;
+}
+
+.benefit-card h3 {
+  font-size: 1.13rem;
+  color: #102746;
+  margin: 24px 0 10px;
+}
+
+.benefit-card p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: #6b7b8f;
+  min-height: 62px;
+}
+
+.benefit-card a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #3471e4;
+  font-weight: 800;
+  font-size: 0.82rem;
+  text-decoration: none;
+}
+
+.benefit-card a span {
+  padding-left: 7px;
+}
+
+.about-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 54px;
+  background: #eaf1fb;
+  border-radius: 10px;
+  padding: 24px 10px;
+}
+
+.about-strip > div {
+  text-align: center;
+  border-right: 1px solid #d4dfef;
+}
+
+.about-strip > div:last-child {
+  border: 0;
+}
+
+.about-strip strong,
+.about-strip span {
+  display: block;
+}
+
+.about-strip strong {
+  font-size: 1.1rem;
+  color: #102746;
+}
+
+.about-strip span {
+  font-size: 0.78rem;
+  color: #718199;
+  margin-top: 6px;
+}
+
+@media (max-width: 720px) {
+  .section-wrap {
+    padding: 72px 22px;
+  }
+
+  .benefit-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .benefit-card {
+    padding: 25px;
+  }
+
+  .benefit-card p {
+    min-height: 0;
+  }
+
+  .about-strip {
+    gap: 20px;
+    grid-template-columns: 1fr;
+    padding: 23px;
+  }
+
+  .about-strip > div {
+    border-right: 0;
+    border-bottom: 1px solid #d4dfef;
+    padding-bottom: 17px;
+  }
+
+  .about-strip > div:last-child {
+    border: 0;
+    padding-bottom: 0;
+  }
+}

@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  color-scheme: light;
+  --color-navy: #102746;
+  --color-navy-deep: #0b1b34;
+  --color-blue: #3471e4;
+  --color-yellow: #ffcb37;
+  --color-pink: #f94d87;
+  --color-violet: #9068fc;
+  --color-background: #f7f9fd;
+  --color-muted: #6b7b8f;
+  font-family: 'DM Sans', Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  scroll-padding-top: 20px;
+}
+* {
+  box-sizing: border-box;
+}
+
+
+/* Para navegadores basados en Chromium (Chrome, Edge, Brave, Opera, Safari) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2563eb;
+  border-radius: 5px;
+  border: 2px solid #0f172a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3b82f6;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2563eb #0f172a;
+}
+
+
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-background);
+  color: var(--color-navy);
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #ffcb37;
+  outline-offset: 3px;
+}
+
+::selection {
+  background: #cfe0ff;
+  color: #102746;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

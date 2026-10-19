@@ -1,0 +1,229 @@
+<div class="admin-shell">
+  <aside class="sidebar">
+    <a routerLink="/" class="admin-brand">
+      <span>FM</span>
+      <div>
+        FM T&amp;T
+        <small>ASSOCIATED GROUP</small>
+      </div>
+    </a>
+
+    <p class="sidebar-label">ADMINISTRACIÓN</p>
+
+    <button type="button" [class.active]="activeTab === 'plans'" (click)="activeTab = 'plans'">
+      <span>▦</span> Planes de internet
+    </button>
+
+    <button type="button" [class.active]="activeTab === 'products'" (click)="activeTab = 'products'">
+      <span>▧</span> Catálogo de productos
+    </button>
+
+    <div class="sidebar-bottom">
+      <a routerLink="/">← Volver al sitio</a>
+      <small>Panel MVP · modo local</small>
+    </div>
+  </aside>
+
+  <main class="admin-main">
+    @if (!authenticated) {
+      <section class="login-card">
+        <div class="login-logo">FM</div>
+        <p class="eyebrow-dark">ÁREA PRIVADA · DEMOSTRACIÓN</p>
+        <h1>Bienvenido de nuevo.</h1>
+        <p>Ingresa la clave de demostración para administrar tarifas y productos.</p>
+
+        <form (ngSubmit)="login()">
+          <label for="admin-password">Contraseña</label>
+          <input
+            id="admin-password"
+            type="password"
+            name="password"
+            [(ngModel)]="password"
+            required
+            placeholder="Ingresa la contraseña"
+          />
+
+          <button type="submit">
+            Entrar al panel <span>→</span>
+          </button>
+        </form>
+
+        @if (loginError) {
+          <p class="error">{{ loginError }}</p>
+        }
+
+        <small>Clave inicial: <code>FMAdmin2026!</code></small>
+
+        <div class="security-note">
+          Aviso: este acceso es solo visual. No publiques el panel sin autenticación
+          y autorización en un backend.
+        </div>
+      </section>
+    } @else {
+      <header class="admin-topbar">
+        <div>
+          <p class="eyebrow-dark">PANEL DE CONTROL</p>
+          <h1>{{ activeTab === 'plans' ? 'Planes de internet' : 'Catálogo de productos' }}</h1>
+          <p>Administra el contenido que aparece en la página pública.</p>
+        </div>
+
+        <a routerLink="/" class="view-site">Ver sitio ↗</a>
+      </header>
+
+      @if (message) {
+        <div class="toast" role="status">{{ message }}</div>
+      }
+
+      @if (activeTab === 'plans') {
+        <div class="info-banner">
+          <strong>¿Qué puedes editar?</strong> Precios mensuales, tarifa inicial,
+          nombre de zona, velocidad, nombre de plan y notas. Los cambios se guardan
+          en localStorage de este navegador.
+        </div>
+
+        @for (plan of plans; track plan.id) {
+          <section class="editor-card">
+            <div class="editor-heading">
+              <div>
+                <span class="zone-dot" [class]="plan.theme"></span>
+                <div>
+                  <h2>{{ plan.zone }}</h2>
+                  <p>{{ plan.area }}</p>
+                </div>
+              </div>
+
+              <span class="offer-count">{{ plan.offers.length }} planes</span>
+            </div>
+
+            <div class="form-grid">
+              <label>
+                Nombre de zona
+                <input [(ngModel)]="plan.zone" [name]="plan.id + '-zone'" />
+              </label>
+
+              <label>
+                Municipios / zona
+                <input [(ngModel)]="plan.area" [name]="plan.id + '-area'" />
+              </label>
+
+              <label>
+                Concepto de cobro inicial
+                <input [(ngModel)]="plan.setupLabel" [name]="plan.id + '-setup-label'" />
+              </label>
+
+              <label>
+                Valor inicial (COP)
+                <input type="number" min="0" [(ngModel)]="plan.setupPrice" [name]="plan.id + '-setup-price'" />
+              </label>
+
+              <label>
+                Teléfono alternativo
+                <input [(ngModel)]="plan.contactLine" [name]="plan.id + '-contact'" />
+              </label>
+            </div>
+
+            <h3>Planes disponibles</h3>
+
+            @for (offer of plan.offers; track offer.id; let i = $index) {
+              <div class="offer-editor">
+                <label>
+                  Nombre / velocidad
+                  <input [(ngModel)]="offer.title" [name]="offer.id + '-title'" />
+                </label>
+
+                <label>
+                  Precio mensual (COP)
+                  <input type="number" min="0" [(ngModel)]="offer.price" [name]="offer.id + '-price'" />
+                </label>
+
+                <label>
+                  Texto pequeño
+                  <input [(ngModel)]="offer.unit" [name]="offer.id + '-unit'" />
+                </label>
+
+                <label class="note-field">
+                  Nota del plan
+                  <textarea rows="2" [(ngModel)]="offer.note" [name]="offer.id + '-note'"></textarea>
+                </label>
+
+                <button
+                  class="remove-button"
+                  type="button"
+                  (click)="removeOffer(plan, i)"
+                  aria-label="Eliminar plan"
+                >
+                  Eliminar
+                </button>
+              </div>
+            }
+
+            <button class="secondary-button" type="button" (click)="addOffer(plan)">
+              + Añadir un plan a esta zona
+            </button>
+          </section>
+        }
+
+        <div class="sticky-actions">
+          <button class="secondary-button" type="button" (click)="resetDemo()">
+            Restaurar datos iniciales
+          </button>
+          <button class="primary-button" type="button" (click)="savePlans()">
+            Guardar tarifas
+          </button>
+        </div>
+      } @else {
+        <div class="info-banner">
+          <strong>Imágenes de producto:</strong> coloca las fotos dentro de
+          <code>public/images/products/</code> y actualiza la ruta en cada tarjeta.
+        </div>
+
+        @for (product of products; track product.id; let i = $index) {
+          <section class="product-editor">
+            <div class="product-thumb">
+              <img
+                [src]="product.image"
+                [alt]="product.title"
+                (error)="$any($event.target).style.display='none'"
+              />
+            </div>
+
+            <div class="product-fields">
+              <label>
+                Título
+                <input [(ngModel)]="product.title" [name]="product.id + '-title'" />
+              </label>
+
+              <label>
+                Categoría
+                <input [(ngModel)]="product.category" [name]="product.id + '-category'" />
+              </label>
+
+              <label>
+                Descripción
+                <textarea rows="2" [(ngModel)]="product.description" [name]="product.id + '-description'"></textarea>
+              </label>
+
+              <label>
+                Ruta de imagen
+                <input [(ngModel)]="product.image" [name]="product.id + '-image'" />
+              </label>
+            </div>
+
+            <button class="remove-button" type="button" (click)="removeProduct(i)">
+              Eliminar
+            </button>
+          </section>
+        }
+
+        <div class="sticky-actions">
+          <button class="secondary-button" type="button" (click)="addProduct()">
+            + Añadir producto
+          </button>
+          <button class="primary-button" type="button" (click)="saveProducts()">
+            Guardar catálogo
+          </button>
+        </div>
+      }
+    }
+  </main>
+</div>

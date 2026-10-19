@@ -1,0 +1,18 @@
+<header class="site-header">
+  <a class="brand" href="#inicio" aria-label="FM T&T Associated Group, inicio" (click)="closeMenu()">
+    <!-- IMAGEN DEL LOGO: guarda el archivo en public/images/brand/logo.png y usa src="/images/brand/logo.png".
+         Si aún no tienes el logo oficial, se mostrará el nombre de la empresa como marca temporal. -->
+    <img src="/images/brand/logo.webp" alt="Logo FM T&T Associated Group"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+    <span class="brand-fallback">FM T&amp;T <small>ASSOCIATED GROUP</small></span>
+  </a>
+  <button class="menu-toggle" type="button" aria-label="Abrir menú" [attr.aria-expanded]="menuOpen" (click)="toggleMenu()">☰</button>
+  <nav class="nav-links" [class.open]="menuOpen" aria-label="Navegación principal">
+    <a href="#inicio" (click)="closeMenu()">Inicio</a>
+    <a href="#nosotros" (click)="closeMenu()">Nosotros</a>
+    <a href="#cobertura" (click)="closeMenu()">Cobertura</a>
+    <a href="#planes" (click)="closeMenu()">Planes</a>
+    <a href="#catalogo" (click)="closeMenu()">Productos</a>
+    <a class="nav-cta" href="#contacto" (click)="closeMenu()">Contáctanos <span>↗</span></a>
+  </nav>
+</header>

@@ -1,0 +1,23 @@
+<section class="projects">
+  <div class="projects-inner">
+    <div class="projects-heading">
+      <div>
+        <p class="eyebrow-dark">LO QUE HACEMOS</p>
+        <h2>Soluciones para estar<br>
+          <span>siempre conectados.</span>
+        </h2>
+      </div>
+      <p>De la conexión a la seguridad, integramos herramientas para que tu espacio funcione mejor.</p>
+    </div>
+    
+    <div class="project-grid">
+      @for (item of items; track item.number) {
+        <article class="project-card"><div class="project-image project-image-{{ item.number }}">
+          <!-- IMÁGENES DE ESTAS TARJETAS: si deseas utilizar fotografías, agrega archivos en public/images/solutions/
+               y reemplaza el background-image de .project-image-* en projects.component.css. -->
+          <span>{{ item.number }}</span>
+        </div><div class="project-copy"><h3>{{ item.title }}</h3><p>{{ item.text }}</p></div></article>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,23 @@
+<section class="benefits section-wrap" id="nosotros">
+  <div class="section-heading">
+    <p class="eyebrow-dark">QUIÉNES SOMOS</p>
+    <h2>Tecnología que acerca<br><span>nuevas posibilidades.</span></h2>
+    <p>En FM T&amp;T Associated Group trabajamos para conectar comunidades rurales y ofrecer soluciones tecnológicas útiles para el día a día.</p>
+  </div>
+
+  <div class="benefit-grid">
+    @for (benefit of benefits; track benefit.title) {
+      <article class="benefit-card">
+        <div class="benefit-icon">{{ benefit.icon }}</div>
+        <h3>{{ benefit.title }}</h3>
+        <p>{{ benefit.description }}</p>
+        <a href="#contacto" [attr.aria-label]="'Consultar sobre ' + benefit.title">Conoce más <span>↗</span></a>
+      </article>
+    }
+  </div>
+  <div class="about-strip">
+    <div><strong>Internet</strong><span>para zonas rurales</span></div>
+    <div><strong>Redes</strong><span>de datos y conectividad</span></div>
+    <div><strong>Soluciones</strong><span>para hogares y negocios</span></div>
+  </div>
+</section>

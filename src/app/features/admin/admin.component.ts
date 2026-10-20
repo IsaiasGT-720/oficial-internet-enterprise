@@ -21,7 +21,7 @@ export class AdminComponent implements OnInit {
   activeTab: 'plans' | 'products' = 'plans';
   message = '';
   // CAMBIA ESTA CLAVE SOLO PARA LA DEMOSTRACIÓN. No es autenticación segura: el frontend se puede inspeccionar.
-  private readonly demoPassword = 'FMAdmin2026!';
+  private readonly demoPassword = 'FMAdminSite01';
 
   constructor(private readonly data: SiteDataService) {}
   ngOnInit(): void {

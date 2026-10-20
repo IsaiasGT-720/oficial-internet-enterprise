@@ -1,5 +1,5 @@
 <section class="hero" id="inicio" aria-labelledby="hero-title">
-  <div class="hero-background" [style.background-image]="'linear-gradient(90deg, rgba(8,27,53,.88) 0%, rgba(13,45,79,.68) 48%, rgba(13,45,79,.18) 100%), url(' + slides[activeSlide].image + ')'">
+  <div class="hero-background" [style.background-image]="'linear-gradient(90deg, rgba(8,27,53,.88) 0%, rgba(13,45,79,.68) 48%, rgba(13,45,79,.18) 100%), url(' + slides[activeSlide].image + ')'" fetchpriority="high" loading="eager">
     <!-- IMAGEN DE FONDO PRINCIPAL: cambia la URL del arreglo slides en hero.component.ts.
          Archivos esperados en public/images/hero/internet-rural-01.jpg, -02.jpg y -03.jpg.
          Puedes usar imágenes propias; conserva el degradado para que el texto sea legible. -->

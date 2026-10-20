@@ -1,17 +1,62 @@
 <section class="plans-section" id="planes">
-  <div class="plans-heading"><p class="eyebrow-dark">PLANES POR ZONA</p><h2>Elige tu <span>plan.</span></h2><p>Los precios cambian según la zona. Busca tu municipio y mira los planes disponibles.</p></div>
+  <div class="plans-heading">
+    <p class="eyebrow-dark">PLANES POR ZONA</p>
+    <h2>Elige tu <span>plan.</span></h2>
+    <p>
+      Los precios cambian según la zona. Busca tu municipio y mira los planes
+      disponibles.
+    </p>
+  </div>
+
   <div class="plans-grid">
     @for (zone of plans; track zone.id) {
-      <article class="zone-card" [class.gold]="zone.theme === 'gold'" [class.violet]="zone.theme === 'violet'" [class.pink]="zone.theme === 'pink'" [class.blue]="zone.theme === 'blue'">
-        <span class="zone-label">{{ zone.zone }}</span><h3>{{ zone.area }}</h3>
-        <p class="setup">{{ zone.setupLabel }} <strong>{{ zone.setupPrice !== undefined ? (zone.setupPrice | currency:'COP':'symbol-narrow':'1.0-0') : zone.contactLine }}</strong></p>
+      <article
+        class="zone-card"
+        [class.gold]="zone.theme === 'gold'"
+        [class.violet]="zone.theme === 'violet'"
+        [class.pink]="zone.theme === 'pink'"
+        [class.blue]="zone.theme === 'blue'"
+      >
+        <span class="zone-label">{{ zone.zone }}</span>
+        <h3>{{ zone.area }}</h3>
+
+        <p class="setup">
+          {{ zone.setupLabel }}
+          <strong>
+            {{
+              zone.setupPrice !== undefined
+                ? (zone.setupPrice | currency: 'COP':'symbol-narrow':'1.0-0')
+                : zone.contactLine
+            }}
+          </strong>
+        </p>
+
         <div class="offers">
           @for (offer of zone.offers; track offer.id) {
-            <button class="offer-card" type="button" (click)="choose(zone, offer)" [attr.aria-label]="'Consultar ' + offer.title + ' en ' + zone.area">
+            <button
+              class="offer-card"
+              type="button"
+              (click)="choose(zone, offer)"
+              [attr.aria-label]="'Consultar ' + offer.title + ' en ' + zone.area"
+            >
               <span class="offer-title">{{ offer.title }}</span>
-              @if (offer.title.includes('MEGAS')) { <span class="speed-mark">{{ offer.title.split(' ')[0] }} <small>MEGAS</small></span> }
-              <span class="offer-price">{{ offer.price | currency:'COP':'symbol-narrow':'1.0-0' }} <small>{{ offer.unit || 'al mes' }}</small></span>
-              @if (offer.note) { <span class="offer-note">{{ offer.note }}</span> }
+
+              @if (offer.title.includes('MEGAS')) {
+                <span class="speed-mark">
+                  {{ offer.title.split(' ')[0] }}
+                  <small>MEGAS</small>
+                </span>
+              }
+
+              <span class="offer-price">
+                {{ offer.price | currency: 'COP':'symbol-narrow':'1.0-0' }}
+                <small>{{ offer.unit || 'al mes' }}</small>
+              </span>
+
+              @if (offer.note) {
+                <span class="offer-note">{{ offer.note }}</span>
+              }
+
               <span class="offer-arrow">↗</span>
             </button>
           }
@@ -19,26 +64,12 @@
       </article>
     }
   </div>
-  <div class="payment-note"><span>◷</span><p>El pago es por adelantado: afiliación más la primera mensualidad al momento de la instalación.</p></div>
-</section>
 
-@if (selected; as selection) {
-  <div class="modal-backdrop" role="presentation" (click)="close()">
-    <section class="plan-modal" role="dialog" aria-modal="true" aria-labelledby="purchase-title" (click)="$event.stopPropagation()">
-      @if (!submitted) {
-        <button class="modal-close" type="button" aria-label="Cerrar" (click)="close()">×</button>
-        <p class="eyebrow-dark">SOLICITUD DE SERVICIO</p><h2 id="purchase-title">Solicita tu plan</h2>
-        <div class="selected-plan"><strong>{{ selection.offer.title }}</strong><span>{{ selection.zone.area }}</span><b>{{ selection.offer.price | currency:'COP':'symbol-narrow':'1.0-0' }} <small>al mes</small></b></div>
-        <p class="demo-warning">Demostración MVP: esta solicitud no procesa pagos ni se envía a la empresa.</p>
-        <form #requestForm="ngForm" (ngSubmit)="confirmRequest()">
-          <label>Nombre completo<input name="name" [(ngModel)]="form.name" required autocomplete="name" placeholder="Tu nombre"></label>
-          <label>Teléfono de contacto<input name="phone" [(ngModel)]="form.phone" required autocomplete="tel" inputmode="tel" placeholder="Tu número de teléfono"></label>
-          <label>Municipio o vereda<input name="location" [(ngModel)]="form.location" required placeholder="¿Dónde necesitas el servicio?"></label>
-          <button class="submit-button" type="submit" [disabled]="requestForm.invalid">Continuar <span>→</span></button>
-        </form>
-      } @else {
-        <div class="success-icon">✓</div><h2 id="purchase-title">¡Solicitud completada!</h2><p class="success-text">Puedes volver a la página principal. Recuerda que esta es una confirmación de demostración y no representa una compra real.</p><button class="submit-button" type="button" (click)="close()">Volver a la página principal</button>
-      }
-    </section>
+  <div class="payment-note">
+    <span>◷</span>
+    <p>
+      El pago es por adelantado: afiliación más la primera mensualidad al momento
+      de la instalación.
+    </p>
   </div>
-}
+</section>

@@ -1,7 +1,7 @@
 <div class="admin-shell">
   <aside class="sidebar">
     <a routerLink="/" class="admin-brand">
-      <span>FM</span>
+      <span><img src="icono.webp"height="25px" width="30px"></span>
       <div>
         FM T&amp;T
         <small>ASSOCIATED GROUP</small>
@@ -20,17 +20,16 @@
 
     <div class="sidebar-bottom">
       <a routerLink="/">← Volver al sitio</a>
-      <small>Panel MVP · modo local</small>
     </div>
   </aside>
 
   <main class="admin-main">
     @if (!authenticated) {
       <section class="login-card">
-        <div class="login-logo">FM</div>
+        <div class="login-logo"><img src="icono.webp"height="35px" width="40px"></div>
         <p class="eyebrow-dark">ÁREA PRIVADA · DEMOSTRACIÓN</p>
         <h1>Bienvenido de nuevo.</h1>
-        <p>Ingresa la clave de demostración para administrar tarifas y productos.</p>
+        <p>Ingresa la clave de administración para administrar tarifas y productos.</p>
 
         <form (ngSubmit)="login()">
           <label for="admin-password">Contraseña</label>
@@ -51,12 +50,11 @@
         @if (loginError) {
           <p class="error">{{ loginError }}</p>
         }
-
+<!--
         <small>Clave inicial: <code>FMAdmin2026!</code></small>
-
+-->
         <div class="security-note">
-          Aviso: este acceso es solo visual. No publiques el panel sin autenticación
-          y autorización en un backend.
+          Ingresa la contraseña otorgada por la compañía FM T&T para accedel al sitio administrativo de la página.
         </div>
       </section>
     } @else {
@@ -77,8 +75,7 @@
       @if (activeTab === 'plans') {
         <div class="info-banner">
           <strong>¿Qué puedes editar?</strong> Precios mensuales, tarifa inicial,
-          nombre de zona, velocidad, nombre de plan y notas. Los cambios se guardan
-          en localStorage de este navegador.
+          nombre de zona, velocidad, nombre de plan y notas. 
         </div>
 
         @for (plan of plans; track plan.id) {

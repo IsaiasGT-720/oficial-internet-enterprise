@@ -3,12 +3,12 @@
   <div class="catalog-grid">
     @for (product of products; track product.id) {
       <article class="product-card">
-        <div class="product-image">
+        <div class="product-image" loading="lazy">
           <!-- IMAGEN DE CADA PRODUCTO: reemplaza product.image en SiteDataService.
                Guarda tus archivos en public/images/products/ y conserva rutas como /images/products/camara-seguridad.jpg.
                Productos previstos: camara-seguridad.jpg, antena-ubiquiti.jpg, redes-datos.jpg,
                redes-electricas.jpg y domotica.jpg. -->
-          <img [src]="product.image" [alt]="product.title" loading="lazy" (error)="$any($event.target).style.display='none'">
+          <img [src]="product.image" [alt]="product.title" loading="lazy" (error)="$any($event.target).style.display='none'" loading="lazy">
           <span>{{ product.category }}</span>
         </div>
         <div class="product-copy"><h3>{{ product.title }}</h3><p>{{ product.description }}</p><a href="#contacto">Consultar servicio <span>↗</span></a></div>

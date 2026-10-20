@@ -371,7 +371,7 @@
   width: 52px;
   height: 52px;
   border-radius: 11px;
-  background: #102746;
+  background: inherit;
   color: #ffcb37;
   font-weight: 900;
   font-size: 1.3rem;
